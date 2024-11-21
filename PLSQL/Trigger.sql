@@ -48,3 +48,12 @@ VALUES (6, 'Alice Brown', '1993-12-15', '2022-05-30', 'AB-', '1234 Cedar St, Koc
 
 INSERT INTO Employees (employee_id, employee_name, date_of_birth, date_of_join, blood_group, address, designation, location, mobile_number, salary) 
 VALUES (8, 'Brown', '1993-12-15', '2022-08-04', 'A-', '1234 Cedar St, Kochi', 'HR', 'Kochi', '7876583211', 50000.00);
+
+INSERT INTO Employees (employee_id, employee_name, date_of_birth, date_of_join, blood_group, address, designation, location, mobile_number, salary) 
+VALUES (9, 'Brown', '1993-12-15', '2022-08-04', 'A-', '1234 Cedar St, Kochi', 'HR', 'Kochi', '7876583211', 50000.00);
+
+CREATE VIEW Kochi_HR_Employees AS
+SELECT employee_id, employee_name, date_of_birth, date_of_join, blood_group, address, designation, location, mobile_number, salary
+FROM Employees
+WHERE location = 'Kochi' AND designation = 'HR';
+SELECT * FROM Kochi_HR_Employees;
