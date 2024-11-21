@@ -35,7 +35,6 @@ CREATE TRIGGER after_employee_insert
 AFTER INSERT ON Employees
 FOR EACH ROW
 BEGIN
-    -- Update the row count for the Employees table
     UPDATE RowCount
     SET row_count = row_count + 1
     WHERE table_name = 'Employees';
@@ -57,3 +56,29 @@ SELECT employee_id, employee_name, date_of_birth, date_of_join, blood_group, add
 FROM Employees
 WHERE location = 'Kochi' AND designation = 'HR';
 SELECT * FROM Kochi_HR_Employees;
+
+-- Stored Procedure
+DELIMITER $$
+CREATE PROCEDURE GetKochiHREmployees()
+BEGIN
+    SELECT employee_id, employee_name, date_of_birth, date_of_join, blood_group, address, designation, location, mobile_number, salary
+    FROM Employees
+    WHERE location = 'Kochi' AND designation = 'HR';
+END $$
+DELIMITER ;
+
+CALL GetKochiHREmployees();
+-- function 
+DELIMITER $$
+CREATE FUNCTION CheckKochiHREmployees()
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE emp_count INT;
+    SELECT COUNT(*) INTO emp_count
+    FROM Employees
+    WHERE location = 'Kochi' AND designation = 'HR';
+    RETURN emp_count;
+END $$
+DELIMITER ;
+SELECT CheckKochiHREmployees();
