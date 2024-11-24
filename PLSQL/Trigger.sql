@@ -82,3 +82,13 @@ BEGIN
 END $$
 DELIMITER ;
 SELECT CheckKochiHREmployees();
+
+DELIMITER $$
+CREATE PROCEDURE GetEmployeesByYearJoin (IN year_join INT)
+BEGIN
+    SELECT employee_id, employee_name, date_of_join
+    FROM Employees
+    WHERE YEAR(date_of_join) = year_join;
+END $$
+DELIMITER ;
+CALL GetEmployeesByYearJoin(1993);
