@@ -1,4 +1,8 @@
 //Encapsulation
+
+import java.util.ArrayList;
+import java.util.List;
+
 class ScoreBoard{
 	private int teamA=0;
 	private int teamB=0;
@@ -51,10 +55,11 @@ public class Main {
 		System.out.println("Team A = "+soccerMatch1.getTeamA_Score());
 		System.out.println("Team B = "+soccerMatch1.getTeamB_Score());
 		Soccer soccor1=new Soccer();
-		soccor1.predictWin();
-		
-		
-		
+		soccor1.predictWin();		
+
+		List list = new ArrayList<>();
+
+		list.add(10,"");
 	}
 
 }
