@@ -135,3 +135,26 @@ select empName from Employees e , Projects p where e.empId=p.empId and p.proName
 SELECT DISTINCT deptName FROM Employees;
 
 -- 5. Combine two tables (employees and former_employees) and remove duplicates.
+CREATE TABLE ExEmployees (
+    empId INT PRIMARY KEY,
+    empName VARCHAR(50) NOT NULL,
+    doj DATE NOT NULL,
+    deptId INT NOT NULL,
+    deptName VARCHAR(20),
+    salary DOUBLE NOT NULL,
+    leaveDate DATE,  -- Assuming we store when the employee left
+    reasonForLeaving VARCHAR(100),
+    FOREIGN KEY (deptId) REFERENCES Departments(deptId)
+);
+INSERT INTO ExEmployees (empId, empName, doj, deptId, deptName, salary, leaveDate, reasonForLeaving)
+VALUES
+    (11, 'John Doe', '2018-05-01', 1, 'Sales', 55000.00, '2022-06-30', 'Personal Reasons'),
+    (12, 'Sarah Williams', '2016-08-20', 2, 'Marketing', 60000.00, '2023-01-15', 'Job Offer'),
+    (13, 'Michael Brown', '2015-04-12', 3, 'IT', 75000.00, '2022-12-05', 'Retirement');
+    
+SELECT empId, empName, doj, deptId, deptName, salary
+FROM Employees
+UNION
+SELECT empId, empName, doj, deptId, deptName, salary
+FROM ExEmployees;
+

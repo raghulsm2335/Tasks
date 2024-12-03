@@ -1,8 +1,9 @@
+//Developer: Raghul S M
+//Developed on: 20-11-24
+//Modified on: 22-11-24
+//Reviewed By:
+
 //Encapsulation
-
-import java.util.ArrayList;
-import java.util.List;
-
 class ScoreBoard{
 	private int teamA=0;
 	private int teamB=0;
@@ -28,9 +29,13 @@ abstract class Game extends ScoreBoard{
 	public void game(){
 		System.out.println("match starts");
 	}
+	
 }
 //multi-level inheritance
 class Soccer extends Game{
+	public void playerName(String playerName){
+		System.out.println("player: "+playerName+" scored");
+	}
 
 	@Override
 	void predictWin() {
@@ -45,6 +50,12 @@ class Soccer extends Game{
 	}
 	
 }
+class SoccerPlayer extends Soccer {
+	public void playerName(int playerOrder){
+		System.out.println("player: " +playerOrder+" scored");
+	}
+	
+}
 
 
 public class Main {
@@ -52,14 +63,12 @@ public class Main {
 		ScoreBoard soccerMatch1=new ScoreBoard();
 		soccerMatch1.setTeamA_Score(5);
 		soccerMatch1.setTeamB_Score(6);
-		System.out.println("Team A = "+soccerMatch1.getTeamA_Score());
-		System.out.println("Team B = "+soccerMatch1.getTeamB_Score());
 		Soccer soccor1=new Soccer();
-		soccor1.predictWin();		
+		SoccerPlayer soccor2=new SoccerPlayer();
+		soccor1.predictWin();
+		soccor2.playerName(1);
+		soccor2.playerName("Raghul");
 
-		List list = new ArrayList<>();
-
-		list.add(10,"");
 	}
 
 }
